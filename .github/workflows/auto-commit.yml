@@ -1,0 +1,29 @@
+name: Auto commit
+
+on:
+  schedule:
+    - cron: "0 0 1 * *"
+  workflow_dispatch:
+
+jobs:
+  commit:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Configure Git
+        run: |
+          git config --global user.name "${{ github.actor_id }}"
+          git config --global user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+
+      - uses: actions/checkout@v3
+
+      - name: Modify README.md
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+          REPO: ${{ github.repository }}
+          BRANCH_NAME: ${{ github.ref_name }}
+        run: |
+          ./update.sh
+
+      - name: Commit and push changes
+        run: |
