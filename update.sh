@@ -3,7 +3,7 @@ set -exo pipefail
 
 REPO_LINK="https://$PAT_TOKEN@github.com/$REPO.git"
 
-date="$(date +'%A %d %B')"
+date="$(date +'%A %B %d')"
 
 git clone "$REPO_LINK" -b "$BRANCH_NAME" auto-commit
 
