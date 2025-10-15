@@ -1,2 +1,2 @@
 # Auto commit
-## Сегодня Среда 15 октября
+## Today is Wednesday October 15
